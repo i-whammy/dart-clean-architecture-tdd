@@ -1,13 +1,10 @@
 class NameState {
   String name = "";
-  NameState() {}
 }
 
 class NamePresenter implements NameOutputPort {
-  late NameState _state;
-  NamePresenter(NameState state) {
-    this._state = state;
-  }
+  NameState _state;
+  NamePresenter(NameState this._state) {}
 
   @override
   void setName(String name) {
@@ -33,10 +30,7 @@ abstract class NameInputPort {
 class NameUsecase {
   late NameInputPort _inputPort;
   late NameOutputPort _outputPort;
-  NameUsecase(NameGateway gateway, NamePresenter presenter) {
-    this._inputPort = gateway;
-    this._outputPort = presenter;
-  }
+  NameUsecase(NameInputPort this._inputPort, NameOutputPort this._outputPort) {}
 
   void getName() {
     var name = _inputPort.getName();
