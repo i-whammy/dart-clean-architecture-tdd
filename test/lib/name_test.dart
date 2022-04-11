@@ -13,13 +13,11 @@ void main() {
 
   test('NameUsecase', () {
     var inputPort = MockNameGateway();
-    var state = MockNameState();
     var outputPort = MockNamePresenter();
     when(inputPort.getName()).thenReturn("Mocked Name");
     NameUsecase(inputPort, outputPort).getName();
     verify(inputPort.getName());
-    // TODO: verifying argument of mock
-    // expect(verify(outputPort.setName).captured.single, "Mocked Name");
+    verify(outputPort.setName(argThat(equals("Mocked Name"))));
   });
 
   test('NamePresenter', () {
